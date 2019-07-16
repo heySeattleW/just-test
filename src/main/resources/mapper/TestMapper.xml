@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="ProductPriceCustomerModel" >
+    <select id="getCustomerPriceCount1" resultClass="java.lang.Integer">
+        select sum(t.count) from (
+        <isNotEmpty property="customerPriceModelList">
+            <iterate property="customerPriceModelList" removeFirstPrepend="true" prepend="UNION ALL">
+                UNION ALL (select count(FID) count from t_product_price_customer where FDBID=#dbid# and FPRODUCTID =
+                #customerPriceModelList[].productId# and FCUSTOMERID = #customerPriceModelList[].customerId#)
+            </iterate>
+            )t
+        </isNotEmpty>
+    </select>
+
+</sqlMap>
