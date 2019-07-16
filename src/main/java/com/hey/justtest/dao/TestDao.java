@@ -1,9 +1,6 @@
 package com.hey.justtest.dao;
 
 import com.hey.justtest.entity.ProductPriceCustomerModel;
-import com.ibatis.sqlmap.client.SqlMapClient;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import java.sql.SQLException;
@@ -24,6 +21,6 @@ public class TestDao extends BaseDao {
         Map<String, Object> paraMap = new HashMap<>();
         paraMap.put("customerPriceModelList", list);
         paraMap.put("dbid", 553194);
-        return (Integer) getSqlMapInstance().queryForObject("ProductPriceCustomerModel.getCustomerPriceCount", paraMap);
+        return (Integer) getSqlMapInstance().queryForObject("ProductPriceCustomerModel.getCustomerPriceCount1", paraMap);
     }
 }
