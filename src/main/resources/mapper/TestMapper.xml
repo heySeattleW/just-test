@@ -12,4 +12,26 @@
         </isNotEmpty>
     </select>
 
+    <insert id="savelist" parameterClass="java.util.HashMap">
+        insert into mine_test.test(name,age)
+        values
+        <iterate property="users" conjunction=",">
+            (#users[].name#,#users[].age#)
+        </iterate>
+        ON DUPLICATE KEY UPDATE
+        age=if((values(age)='-2147483648') || (values(age)='-2147483648.0')
+        || (values(age)='-2147483648.00') || (values(age)='-2147483648.000')
+        || (values(age)='-2147483648.0000')
+        ,values(age),age),
+        name=values(name)
+    </insert>
+
+    <update id="update">
+        update mine_test.test set name='hey'
+        <isGreaterEqual property="age1" compareValue="0">
+            ,age=#age1#
+        </isGreaterEqual>
+        where name='hey'
+    </update>
+
 </sqlMap>

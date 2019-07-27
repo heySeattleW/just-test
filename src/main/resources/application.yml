@@ -6,4 +6,8 @@ spring:
     password: ydh20130815
 logging:
   level:
-    com.hey.justtest.dao: debug
+    com.hey.justtest.new1.dao: debug
+    org.apache.ibatis: debug
+    java.sql: debug
+    java.sql.Connection: debug
+    java.sql.Statement: debug
